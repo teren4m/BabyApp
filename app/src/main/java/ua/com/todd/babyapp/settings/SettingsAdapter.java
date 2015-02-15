@@ -24,7 +24,6 @@ public class SettingsAdapter extends ArrayAdapter<String> {
 	
 	class AnimalHolder{
 		Animal animal;
-	    int img;
 	    View view;
 	  }
 	
@@ -68,13 +67,11 @@ public class SettingsAdapter extends ArrayAdapter<String> {
 		imgView.setImageResource(animalHolder.animal.getAnimalImage());
 	
 		textView.setText(animalHolder.animal.getName());
-		view.setBackgroundResource(animalHolder.img);
 		
 		checkBox.setChecked(animalHolder.animal.isVisible());
 		checkBox.setFocusable(false);
 		checkBox.setId(position);
 		checkBox.setOnCheckedChangeListener((OnCheckedChangeListener) context);
-		animalHolder.img = R.drawable.black;
 		
 		animalHolder.view = view;
 		

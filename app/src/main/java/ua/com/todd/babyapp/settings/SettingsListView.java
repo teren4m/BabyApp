@@ -69,12 +69,10 @@ public class SettingsListView extends ListView {
 	
     public void setItemSelection(int position){
     	AnimalHolder animalHolderPrev = adapter.getItemAnimal(last);
-    	animalHolderPrev.img = R.drawable.black;
     	
     	last = position;
     	
     	AnimalHolder animalHolderNext = adapter.getItemAnimal(last);
-    	animalHolderNext.img = R.drawable.red;
     	
     	if(last == 0)
     		bound = FIRST;

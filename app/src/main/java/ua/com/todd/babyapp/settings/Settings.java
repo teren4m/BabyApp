@@ -44,33 +44,6 @@ public List<Animal> getVisibleAnimals(){
 		return visibleAnimals;
 	}
 	
-	/*public List<View> getListLayout(Context context){
-		List<View> pages = new ArrayList<View>();
-		List<Animal> listOfVisibleAnimals = getVisibleAnimals();
-		
-		int lastIndex = listOfVisibleAnimals.size() - 1;
-		
-		AnimalDefault a = new AnimalDefault(listOfVisibleAnimals.get(0).getName(), 
-				listOfVisibleAnimals.get(0).getAnimalSound(), 
-				listOfVisibleAnimals.get(0).getAnimalImage(), true);
-		
-		AnimalDefault b = new AnimalDefault(listOfVisibleAnimals.get(lastIndex).getName(), 
-				listOfVisibleAnimals.get(lastIndex).getAnimalSound(), 
-				listOfVisibleAnimals.get(lastIndex).getAnimalImage(),true );
-		
-		pages.add(b.getPageView(context));
-		
-		for(AnimalDefault animal : listOfVisibleAnimals){
-			View v = animal.getPageView(context);
-			pages.add(v);
-		}
-		
-		pages.add(a.getPageView(context));
-		
-		return pages;
-		
-	}	*/
-	
 	public boolean isCheckAll() {
 		return checkAll;
 	}

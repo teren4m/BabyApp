@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.*;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -45,9 +44,6 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
 		imgLeft.setOnClickListener(this);
 		imgRight.setOnClickListener(this);
 
-		
-			
-		
 		settings = new Settings();
 		fileSettings = Environment.getExternalStorageDirectory();
 		fileSettings = new File(fileSettings + "/" + DIR_SETTINGS);
@@ -118,37 +114,15 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
         switch (item.getItemId()) {
         
         case R.id.menu_settings:
-        	System.out.print("hghgjgjgkkg");
         	Intent i = new Intent(this, ActivitySettings.class);
         	i.putExtra(Settings.FILE_SETTINGS, settings);
         	startActivityForResult(i, 1);
-            return true;
-            
-        case R.id.menu_exit:
-        	ByteArrayOutputStream baOut = new ByteArrayOutputStream();
-        	PrintStream out = new PrintStream(baOut);
-        	System.setOut(out);
-        	System.setErr(out);
-        	 out.println("hvjuv");
-        	 System.out.println("gufufu");
-        	
-        	TextView t = (TextView)findViewById(R.id.textView1);
-        	
-        	t.setText(baOut.toString() + "");
-        	//finish();
-        	
             return true;
             
         default:
             return super.onOptionsItemSelected(item);
         }
     }
-	
-	@Override
-	public void onAttachedToWindow() {
-	    this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
-	    super.onAttachedToWindow();
-	}
 
 	@Override
 	public void onBackPressed() {

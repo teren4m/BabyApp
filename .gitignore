@@ -44,5 +44,6 @@ build/
 .classpath
 .project
 project.properties
-
+obj
+*.hprof
 

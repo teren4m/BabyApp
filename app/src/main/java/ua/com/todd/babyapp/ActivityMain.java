@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 
-import ua.com.todd.babyapp.settings.ActivitySettings;
 import ua.com.todd.babyapp.settings.Settings;
 
 public class ActivityMain extends Activity implements OnLongClickListener, OnClickListener {
@@ -70,9 +69,6 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
         switch (item.getItemId()) {
 
             case R.id.menu_settings:
-                Intent i = new Intent(this, ActivitySettings.class);
-                i.putExtra(Settings.FILE_SETTINGS, settings);
-                startActivityForResult(i, 1);
                 return true;
 
             default:

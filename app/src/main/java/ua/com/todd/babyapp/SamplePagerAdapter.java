@@ -115,10 +115,7 @@ public class SamplePagerAdapter extends PagerAdapter implements OnPageChangeList
 		
 		layout.addView(imageView);
 		
-		MediaPlayer soundAnimals = MediaPlayer.create(context, animal.getAnimalSound());
-		soundAnimals.setAudioStreamType(AudioManager.STREAM_MUSIC);
-		
-		layout.setOnClickListener(new AnimalOnClickListener(context, soundAnimals));
+		layout.setOnClickListener(new AnimalOnClickListener(context, animal));
 		
 		return layout;
 	}

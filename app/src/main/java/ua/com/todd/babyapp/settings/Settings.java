@@ -35,13 +35,7 @@ public class Settings implements Serializable {
 	}
 	
 public List<Animal> getVisibleAnimals(){
-		
-		List<Animal> visibleAnimals = new ArrayList<Animal>();
-		for(Animal animal : listOfAnimals){
-			if(animal.isVisible())
-				visibleAnimals.add(animal);
-		}
-		return visibleAnimals;
+		return listOfAnimals;
 	}
 	
 	public boolean isCheckAll() {

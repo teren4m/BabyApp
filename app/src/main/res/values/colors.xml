@@ -3,5 +3,7 @@
     <color name="black_overlay">#66000000</color>
     <color name="orange">#f45015</color>
     <color name="green">#84dB2c</color>
+    <color name="black_default">#15000000</color>
+    <color name="black_pressed">#77000000</color>
 
 </resources>

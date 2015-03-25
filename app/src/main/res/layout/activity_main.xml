@@ -27,16 +27,18 @@
 
     <ImageView
         android:id="@+id/imageView_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:src="@drawable/right" />
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:src="@drawable/right"
+        android:background="@drawable/selector_button_black"/>
 
     <ImageView
         android:id="@+id/imageView_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:src="@drawable/left" />
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:src="@drawable/left"
+        android:background="@drawable/selector_button_black"/>
 
 </FrameLayout>

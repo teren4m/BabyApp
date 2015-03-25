@@ -10,13 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import ua.com.todd.babyapp.settings.Settings;
 
 public class ActivityMain extends ActionBarActivity implements OnLongClickListener, OnClickListener {
 
-    private ImageView imgLock;
     private ImageView imgLeft;
     private ImageView imgRight;
     private ViewPager viewPager;
@@ -35,8 +35,16 @@ public class ActivityMain extends ActionBarActivity implements OnLongClickListen
                     @Override
                     public void onSystemUiVisibilityChange(int flags) {
                         boolean visible = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
-                        if(visible)
+                        FrameLayout.LayoutParams layoutParamsLeft = (FrameLayout.LayoutParams) imgLeft.getLayoutParams();
+                        FrameLayout.LayoutParams layoutParamsRight = (FrameLayout.LayoutParams) imgRight.getLayoutParams();
+                        if (visible) {
                             showSystemUI();
+                            layoutParamsLeft.setMargins(0, toolbar.getHeight(), 0, 0);
+                            layoutParamsRight.setMargins(0, toolbar.getHeight(), 0, 0);
+                        } else {
+                            layoutParamsLeft.setMargins(0, 0, 0, 0);
+                            layoutParamsRight.setMargins(0, 0, 0, 0);
+                        }
                         toolbar.animate()
                                 .alpha(visible ? 1 : 0)
                                 .translationY(visible ? 0 : toolbar.getHeight());
@@ -46,7 +54,7 @@ public class ActivityMain extends ActionBarActivity implements OnLongClickListen
         setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        imgLock = (ImageView) toolbar.findViewById(R.id.imageView_lock);
+        ImageView imgLock = (ImageView) toolbar.findViewById(R.id.imageView_lock);
         imgLeft = (ImageView) findViewById(R.id.imageView_left);
         imgRight = (ImageView) findViewById(R.id.imageView_right);
 

@@ -17,7 +17,7 @@ import ua.com.todd.babyapp.settings.Settings;
 public class ActivityMain extends ActionBarActivity implements OnLongClickListener, OnClickListener {
 
 
-    private boolean isLock = false;
+    private boolean isLock = true;
     private ImageView imgLock;
     private ImageView imgLeft;
     private ImageView imgRight;
@@ -38,7 +38,6 @@ public class ActivityMain extends ActionBarActivity implements OnLongClickListen
                     public void onSystemUiVisibilityChange(int flags) {
                         boolean visible = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
                         isLock = visible;
-                        lock(visible);
                         toolbar.animate()
                                 .alpha(visible ? 1 : 0)
                                 .translationY(visible ? 0 : toolbar.getHeight());
@@ -111,11 +110,9 @@ public class ActivityMain extends ActionBarActivity implements OnLongClickListen
 
     private void lock(boolean isVisible) {
         if (isVisible) {
-            imgLock.setImageResource(R.drawable.unlock);
-            showSystemUI();
-        } else {
-            imgLock.setImageResource(R.drawable.lock);
             hideSystemUI();
+        } else {
+            showSystemUI();
         }
     }
 

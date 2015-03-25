@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_base"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
@@ -8,6 +9,21 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/imageView_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/unlock" />
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageView_right"
@@ -22,27 +38,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:src="@drawable/left" />
-
-    <ImageView
-        android:id="@+id/imageView_lock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:src="@drawable/unlock" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#f00" />
-
-    <ImageView
-        android:id="@+id/button_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_preferences" />
 
 </FrameLayout>

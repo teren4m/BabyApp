@@ -1,9 +1,9 @@
 package ua.com.todd.babyapp;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import ua.com.todd.babyapp.settings.Settings;
 
-public class ActivityMain extends Activity implements OnLongClickListener, OnClickListener {
+public class ActivityMain extends ActionBarActivity implements OnLongClickListener, OnClickListener {
 
 
     private boolean isLock = false;
@@ -23,15 +23,32 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
     private ImageView imgRight;
     private ViewPager viewPager;
     private Settings settings;
+    private View mDecorView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
+        mDecorView = getWindow().getDecorView();
+        mDecorView.setOnSystemUiVisibilityChangeListener(
+                new View.OnSystemUiVisibilityChangeListener() {
+                    @Override
+                    public void onSystemUiVisibilityChange(int flags) {
+                        boolean visible = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
+                        isLock = visible;
+                        lock(visible);
+                        toolbar.animate()
+                                .alpha(visible ? 1 : 0)
+                                .translationY(visible ? 0 : toolbar.getHeight());
+                    }
+                });
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        imgLock = (ImageView) findViewById(R.id.imageView_lock);
+        imgLock = (ImageView) toolbar.findViewById(R.id.imageView_lock);
         imgLeft = (ImageView) findViewById(R.id.imageView_left);
         imgRight = (ImageView) findViewById(R.id.imageView_right);
 
@@ -48,11 +65,6 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
         viewPager.setAdapter(pageAdapter);
         viewPager.setOnPageChangeListener(pageAdapter);
         viewPager.setCurrentItem(1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        settings = (Settings) data.getSerializableExtra(Settings.FILE_SETTINGS);
     }
 
     @Override
@@ -77,20 +89,9 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
     }
 
     @Override
-    public void onBackPressed() {
-        if (!isLock) finish();
-    }
-
-    @Override
     public boolean onLongClick(View arg0) {
-        if (isLock) {
-            isLock = false;
-            imgLock.setImageResource(R.drawable.unlock);
-        } else {
-            isLock = true;
-            imgLock.setImageResource(R.drawable.lock);
-
-        }
+        lock(isLock);
+        isLock = !isLock;
         return false;
     }
 
@@ -106,5 +107,29 @@ public class ActivityMain extends Activity implements OnLongClickListener, OnCli
                 break;
         }
 
+    }
+
+    private void lock(boolean isVisible) {
+        if (isVisible) {
+            imgLock.setImageResource(R.drawable.unlock);
+            showSystemUI();
+        } else {
+            imgLock.setImageResource(R.drawable.lock);
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LOW_PROFILE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    }
+
+    private void showSystemUI() {
+        mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 }
